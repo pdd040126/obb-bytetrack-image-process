@@ -1,0 +1,27 @@
+%YAML:1.0
+---
+image_width: 2560
+image_height: 1440
+pattern_columns: 8
+pattern_rows: 11
+square_size_mm: 60.
+distortion_model: rational_k4
+estimate_k3: 1
+estimate_k4: 1
+fix_k5: 1
+fix_k6: 1
+rms: 0.28755133471919003
+camera_matrix: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ 1859.5708434578353, 0., 1237.6157131735845, 0.,
+       1859.4063694007675, 732.79912874897127, 0., 0., 1. ]
+distortion_coefficients: !!opencv-matrix
+   rows: 14
+   cols: 1
+   dt: d
+   data: [ 1.0943303043786961, -0.24372605436514094,
+       -0.00025230985447437026, 4.4461157403515298e-05,
+       0.047145713721442967, 1.8413015122936622, 0., 0., 0., 0., 0., 0.,
+       0., 0. ]
