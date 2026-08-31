@@ -8,10 +8,10 @@ from pathlib import Path
 # ============================================================
 
 # MP4视频所在目录
-INPUT_DIR = r"H:\image_data\video_test"
+INPUT_DIR = r"H:\image_process_data\video_test"
 
 # JPG图片保存目录
-OUTPUT_DIR = r"H:\image_data\video_frames_output"
+OUTPUT_DIR = r"H:\image_process_data\video_frames_output"
 
 # 抽帧模式：
 # "frame"  = 每隔固定帧数保存一张

@@ -129,14 +129,14 @@ except Exception as exc:
 #
 # Windows 路径前面建议加 r，例如：
 # r"D:\parcel_project\raw_images"
-INPUT_DIR = r"H:\image_data\images_filter_input"
+INPUT_DIR = r"H:\image_process_data\images_filter_input"
 
 
 # 当前正在生产环境中使用、或者当前训练完成的 YOLO / YOLO-OBB 模型。
 #
 # 对 YOLO11-OBB，一般就是：
 # runs/obb/train/weights/best.pt
-MODEL_PATH = r"H:\obb_test\models\best-081800.pt"
+MODEL_PATH = r"H:\obb_test\models\best-082800n.pt"
 
 
 # 筛选结果保存到哪里。
@@ -154,7 +154,7 @@ MODEL_PATH = r"H:\obb_test\models\best-081800.pt"
 #    ├─ screening_report.csv
 #    └─ summary.json
 #
-OUTPUT_DIR = r"H:\image_data\images_filter_output"
+OUTPUT_DIR = r"H:\image_process_data\images_filter_output"
 
 
 # ------------------------------------------------------------

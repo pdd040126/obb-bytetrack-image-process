@@ -7,10 +7,10 @@ import cv2
 # ============================================================
 
 # 输入图片文件夹
-INPUT_DIR = Path(r"H:\image_data\images_rotate_input")
+INPUT_DIR = Path(r"H:\image_process_data\images_rotate_input")
 
 # 输出图片文件夹
-OUTPUT_DIR = Path(r"H:\image_data\images_rotate_output")
+OUTPUT_DIR = Path(r"H:\image_process_data\images_rotate_output")
 
 # 是否递归处理子文件夹
 RECURSIVE = True

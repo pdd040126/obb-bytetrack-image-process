@@ -8,15 +8,15 @@ from pathlib import Path
 # 要批量清空的目标文件夹
 # 可以一直往下面添加
 TARGET_DIRS = [
-    Path(r"H:\image_data\images_calibration_input"),
-    Path(r"H:\image_data\images_calibration_output"),
-    Path(r"H:\image_data\images_filter_input"),
-    Path(r"H:\image_data\images_filter_output"),
-    Path(r"H:\image_data\images_predict_input"),
-    Path(r"H:\image_data\images_predict_output"),
-    Path(r"H:\image_data\images_rotate_input"),
-    Path(r"H:\image_data\images_rotate_output"),
-    # Path(r"H:\image_data\xxx"),
+    Path(r"H:\image_process_data\images_calibration_input"),
+    Path(r"H:\image_process_data\images_calibration_output"),
+    Path(r"H:\image_process_data\images_filter_input"),
+    Path(r"H:\image_process_data\images_filter_output"),
+    Path(r"H:\image_process_data\images_predict_input"),
+    Path(r"H:\image_process_data\images_predict_output"),
+    Path(r"H:\image_process_data\images_rotate_input"),
+    Path(r"H:\image_process_data\images_rotate_output"),
+    # Path(r"H:\image_process_data\xxx"),
 ]
 
 
