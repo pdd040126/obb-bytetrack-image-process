@@ -55,26 +55,26 @@ from ultralytics import YOLO
 # -----------------------------
 # 模型
 # -----------------------------
-MODEL_PATH = Path(r"H:\obb_test\models\best-082704n.pt")
+MODEL_PATH = Path(r"F:\obb_test\models\best-083102s.pt")
 
 # -----------------------------
 # 验证集列表
 # 直接使用你划分脚本生成的 val.txt
 # -----------------------------
-VAL_TXT_PATH = Path(r"H:\train_data\val_grouped.txt")
+VAL_TXT_PATH = Path(r"F:\train_data\val_grouped.txt")
 
 # -----------------------------
 # 输出目录
 # 所有问题图片最终会放在：
 # OUTPUT_DIR / RUN_NAME / problem_images
 # -----------------------------
-OUTPUT_DIR = Path(r"H:\train_data\obb_error_output")
+OUTPUT_DIR = Path(r"F:\train_data\obb_error_output")
 
 # 本次分析名称
 # 换模型时建议改，例如：
 # "8.27.0-n_best"
 # "8.30.0-s_best"
-RUN_NAME = "082704n"
+RUN_NAME = "083102s"
 
 
 # =============================================================================

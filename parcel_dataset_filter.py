@@ -129,14 +129,14 @@ except Exception as exc:
 #
 # Windows 路径前面建议加 r，例如：
 # r"D:\parcel_project\raw_images"
-INPUT_DIR = r"H:\image_process_data\images_filter_input"
+INPUT_DIR = r"F:\image_process_data\images_filter_input"
 
 
 # 当前正在生产环境中使用、或者当前训练完成的 YOLO / YOLO-OBB 模型。
 #
 # 对 YOLO11-OBB，一般就是：
 # runs/obb/train/weights/best.pt
-MODEL_PATH = r"H:\obb_test\models\best-082800n.pt"
+MODEL_PATH = r"F:\obb_test\models\best-083102s.pt"
 
 
 # 筛选结果保存到哪里。
@@ -154,7 +154,7 @@ MODEL_PATH = r"H:\obb_test\models\best-082800n.pt"
 #    ├─ screening_report.csv
 #    └─ summary.json
 #
-OUTPUT_DIR = r"H:\image_process_data\images_filter_output"
+OUTPUT_DIR = r"F:\image_process_data\images_filter_output"
 
 
 # ------------------------------------------------------------
@@ -388,7 +388,7 @@ MODERATE_BRIGHT_RATIO = 0.10
 # 5~6  非常严格
 # 7~9  常用
 # 10+  需要谨慎
-DUP_PHASH_HAMMING = 3
+DUP_PHASH_HAMMING = 5
 
 
 # HSV 直方图相关系数。
@@ -404,7 +404,7 @@ DUP_HIST_CORR = 0.95
 # 1 -> 去重最激进
 # 2 -> 默认推荐
 # 3~5 -> 希望保留更多微小变化
-MAX_KEEP_PER_DUP_GROUP = 1
+MAX_KEEP_PER_DUP_GROUP = 2
 
 
 # ------------------------------------------------------------

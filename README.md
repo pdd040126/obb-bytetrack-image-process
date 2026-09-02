@@ -2,8 +2,8 @@
 
 本目录保存图像预处理、视频抽帧、YOLO OBB 数据集整理、训练、预测和质量分析脚本。
 
-> 文档版本：`v0.1.0`  
-> 最近更新：`2026-08-31`  
+> 文档版本：`v0.2.0`<br>
+> 最近更新：`2026-09-02`
 > Git 当前基线：`8b14161 图像处理`
 
 ## 快速索引
@@ -11,6 +11,8 @@
 | 阶段 | 脚本 | 作用 |
 |---|---|---|
 | 视频预处理 | `mp4tojpg.py` | MP4 按帧或按时间抽取 JPG |
+| 视频预处理 | `mp4tojpg_ffmpeg.py` | 使用 FFmpeg 按帧或按时间抽取 JPG |
+| 视频后处理 | `jpg_to_video_ffmpeg.py` | 使用 FFmpeg 将图片序列合成为视频 |
 | 图像预处理 | `image_calibration.py` | 根据 OpenCV 标定文件批量去畸变 |
 | 图像预处理 | `rotate_images_check_16_9.py` | 检查 16:9，必要时旋转竖图 |
 | 图像清理 | `image_clean.py` | 按配置批量清空目录 |
@@ -21,6 +23,7 @@
 | 数据集落盘 | `split_existing_yolo_obb_by_grouped_txt.py` | 按已有清单复制或移动数据集 |
 | 路径迁移 | `change_dataset_path_prefix.py` | 批量替换 TXT 清单路径前缀 |
 | 数据审计 | `audit_and_sync_yolo_obb_dataset.py` | 检查并同步图片、标签和清单 |
+| 数据集转换 | `cnovert_dataset.py` | 整理数据集图片与标签并重新生成清单 |
 | OBB 质量分析 | `obb_dataset_problem_analyzer.py` | 识别漏检、误检、低 IoU、角度异常等问题 |
 | 模型训练 | `train.py` | 使用 Ultralytics 训练 YOLO11 OBB |
 | 模型预测 | `predict_obb.py` | 批量执行 YOLO OBB 预测并保存可视化结果 |
@@ -66,7 +69,7 @@ torch
 
 - 功能：读取 `INPUT_DIR` 下的 MP4 视频并抽帧为 JPG。
 - 主要配置：`EXTRACT_MODE` 可选 `frame` 或 `second`；分别使用 `FRAME_INTERVAL` 或 `SECOND_INTERVAL`。
-- 默认路径：`H:\image_process_data\video_test` → `H:\image_process_data\video_frames_output`。
+- 默认路径：`F:\image_process_data\video_test` → `F:\image_process_data\video_frames_output`。
 - 输出：文件名包含视频名、图片序号、帧号和时间戳；`CREATE_VIDEO_SUBFOLDER` 控制是否按视频分目录。
 - 适用场景：视频抽帧、构建后续标定或检测输入。
 
@@ -75,7 +78,7 @@ torch
 - 功能：根据 OpenCV YAML 标定参数批量去畸变。
 - 关键输入：原始图片目录、`camera_single.yml`、输出目录。
 - 关键参数：`--mode match-reference|preserve-geometry`、`--recursive`、`--jpeg-quality`、`--start-index`、`--stop-on-error`。
-- 默认路径：`H:\image_process_data\images_calibration_input` → `H:\image_process_data\images_calibration_output`。
+- 默认路径：`F:\image_process_data\images_calibration_input` → `F:\image_process_data\images_calibration_output`。
 - 注意：更换相机、镜头或分辨率时，应更换对应 YAML；不要把输出目录放回输入目录。
 
 ### 3. `rotate_images_check_16_9.py`
@@ -94,8 +97,8 @@ torch
 ### 5. `parcel_dataset_filter.py`
 
 - 功能：结合 YOLO OBB 预测、清晰度、亮度、目标位置、尺寸、角度和重复图像规则筛选样本。
-- 默认输入：`H:\image_process_data\images_filter_input`。
-- 默认输出：`H:\image_process_data\images_filter_output`。
+- 默认输入：`F:\image_process_data\images_filter_input`。
+- 默认输出：`F:\image_process_data\images_filter_output`。
 - 关键配置：`MODEL_PATH`、`DEVICE`、`IMGSZ`、`BATCH_SIZE`、`COPY_MODE`、`DRY_RUN`。
 - 输出内容：保留/排除样本、原因统计及筛选报告（以脚本实际输出为准）。
 
@@ -117,7 +120,7 @@ torch
 
 - 功能：自动发现多个 CVAT 数据集，生成分组 `train_grouped.txt`、`val_grouped.txt`、汇总文件和可选 `data.yaml`。
 - 关键配置：`DATASET_ROOT`、`DATASET_GLOB`、`PATH_MODE`、`CUSTOM_OUTPUT_ROOT`、`REQUIRE_LABEL`、`CLASS_NAMES`。
-- 典型根目录：`H:\train_data` 或 AutoDL 的 `/root/autodl-tmp`。
+- 典型根目录：`F:\train_data` 或 AutoDL 的 `/root/autodl-tmp`。
 - 注意：确认 `PATH_MODE` 与训练机器一致；跨 Windows/AutoDL 使用时配合路径替换脚本。
 
 ### 9. `split_existing_yolo_obb_by_grouped_txt.py`
@@ -145,7 +148,7 @@ torch
 
 - 功能：使用模型对验证集做 OBB 评估，定位漏检、误检、低置信度、低 IoU 和角度误差等问题。
 - 关键配置：`MODEL_PATH`、`VAL_TXT_PATH`、`OUTPUT_DIR`、`DEVICE`、`IMGSZ`、阈值参数。
-- 默认输出：`H:\train_data\obb_error_output`。
+- 默认输出：`F:\train_data\obb_error_output`。
 - 结果用途：根据问题图像回查数据标注、图像质量和模型训练效果。
 
 ### 13. `train.py`
@@ -162,6 +165,24 @@ torch
 - 关键配置：`MODEL_PATH`、`SOURCE_DIR`、`OUTPUT_DIR`、`INPUT_MODE`、`RECT_IMGSZ`、`CONF_THRESHOLD`、`IOU_THRESHOLD`、`DEVICE`。
 - 支持输入模式：脚本内定义的 `square` 或矩形推理模式；运行时也可用 `--model`、`--source`、`--output` 覆盖路径。
 - 注意：预测结果目录不要作为下一次输入目录，避免重复处理结果图。
+
+### 15. `mp4tojpg_ffmpeg.py`
+
+- 功能：调用 FFmpeg/FFprobe 批量抽取视频帧，支持按帧或按时间间隔抽取。
+- 关键配置：`INPUT_DIR`、`OUTPUT_DIR`、`FFMPEG_EXE`、`FFPROBE_EXE`、`EXTRACT_MODE`、`FRAME_INTERVAL`。
+- 适用场景：需要更稳定或更高效的视频解码、抽帧时使用。
+
+### 16. `jpg_to_video_ffmpeg.py`
+
+- 功能：按文件名顺序将图片序列合成为 MP4 视频，可手动设置 FPS 或读取原视频 FPS。
+- 关键配置：`INPUT_DIR`、`OUTPUT_VIDEO`、`FPS_MODE`、`OUTPUT_FPS`、`ORIGINAL_VIDEO`、`FRAME_INTERVAL`。
+- 注意：合成前应确认图片命名顺序和 FPS 设置与抽帧方式一致。
+
+### 17. `cnovert_dataset.py`
+
+- 功能：整理指定数据集中的图片和标签目录，并重新生成 `train.txt` / `val.txt`。
+- 关键配置：`DATASET_ROOT`、`DRY_RUN`。
+- 注意：`DRY_RUN=False` 会实际移动标签文件；执行前应确认数据集路径并保留备份。
 
 ## 版本管理规范
 
@@ -203,6 +224,15 @@ git push origin main --tags
 
 ## 更新记录
 
+### v0.2.0 - 2026-09-02
+
+- 新增：加入 FFmpeg 视频抽帧和图片合成视频工具。
+- 新增：加入数据集图片、标签整理和清单重建脚本。
+- 修改：更新 Windows 默认路径、抽帧配置、模型路径和数据筛选去重参数。
+- 修改：预测脚本改为只保存可视化图片，不再输出预测 TXT 文件。
+- 影响脚本/目录：`mp4tojpg.py`、`mp4tojpg_ffmpeg.py`、`jpg_to_video_ffmpeg.py`、`cnovert_dataset.py`、`image_calibration.py`、`parcel_dataset_filter.py`、`obb_dataset_problem_analyzer.py`、`predict_obb.py` 等。
+- 运行验证：完成 Python 语法静态检查。
+
 ### v0.1.0 - 2026-08-31
 
 - 新增：建立本 README。
@@ -211,4 +241,3 @@ git push origin main --tags
 - 说明：未修改任何现有 Python 文件；当前工作区原有已修改和未跟踪文件均保留。
 
 <!-- 新版本请在此处上方追加，保持时间倒序。 -->
-

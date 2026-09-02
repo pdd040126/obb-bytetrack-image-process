@@ -111,7 +111,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--input",
         type=Path,
-        default=Path(r"H:\image_process_data\images_calibration_input"),
+        default=Path(r"F:\image_process_data\images_calibration_input"),
         help="Input image directory.",
     )
 
@@ -122,7 +122,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--calibration",
         type=Path,
-        default=Path(r"H:\image_proccess\camera_single.yml"),
+        default=Path(r"F:\image_proccess\camera_single.yml"),
         help="OpenCV calibration YAML file.",
     )
 
@@ -131,7 +131,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path(r"H:\image_process_data\images_calibration_output"),
+        default=Path(r"F:\image_process_data\images_calibration_output"),
         help="Output image directory.",
     )
 

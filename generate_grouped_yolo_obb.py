@@ -57,7 +57,7 @@ from pathlib import Path
 # -------------------------------------------------------------------------
 
 # Windows 示例
-DATASET_ROOT = Path(r"H:\train_data")
+DATASET_ROOT = Path(r"F:\train_data")
 
 # AutoDL 示例：
 # DATASET_ROOT = Path("/root/autodl-tmp")

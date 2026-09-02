@@ -679,24 +679,12 @@ def main():
 
     output_image_dir = (
         output_dir
-        / "images"
-    )
-
-    output_prediction_dir = (
-        output_dir
-        / "predictions"
     )
 
     output_image_dir.mkdir(
         parents=True,
         exist_ok=True,
     )
-
-    output_prediction_dir.mkdir(
-        parents=True,
-        exist_ok=True,
-    )
-
 
     # ========================================================
     # 打印运行配置
@@ -1031,11 +1019,6 @@ def main():
             / f"{output_stem}.jpg"
         )
 
-        output_txt_path = (
-            output_prediction_dir
-            / f"{output_stem}.txt"
-        )
-
 
         # ====================================================
         # 绘制 OBB 检测结果
@@ -1069,16 +1052,6 @@ def main():
                 f"结果图片保存失败："
                 f"{output_image_path}"
             )
-
-
-        # ====================================================
-        # 保存检测 TXT
-        # ====================================================
-
-        save_prediction_txt(
-            output_txt_path,
-            result.obb,
-        )
 
 
         # ====================================================
@@ -1292,11 +1265,6 @@ def main():
     print(
         f"结果图片：          "
         f"{output_image_dir}"
-    )
-
-    print(
-        f"检测数据：          "
-        f"{output_prediction_dir}"
     )
 
     print(

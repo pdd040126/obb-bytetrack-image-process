@@ -8,19 +8,19 @@ from pathlib import Path
 # ============================================================
 
 # MP4视频所在目录
-INPUT_DIR = r"H:\image_process_data\video_test"
+INPUT_DIR = r"F:\image_process_data\video_test"
 
 # JPG图片保存目录
-OUTPUT_DIR = r"H:\image_process_data\video_frames_output"
+OUTPUT_DIR = r"F:\image_process_data\video_frames_output"
 
 # 抽帧模式：
 # "frame"  = 每隔固定帧数保存一张
 # "second" = 每隔固定秒数保存一张
-EXTRACT_MODE = "second"
+EXTRACT_MODE = "frame"
 
 # 如果 EXTRACT_MODE = "frame"
 # 每隔多少帧保存一张
-FRAME_INTERVAL = 30
+FRAME_INTERVAL = 1
 
 # 如果 EXTRACT_MODE = "second"
 # 每隔多少秒保存一张
